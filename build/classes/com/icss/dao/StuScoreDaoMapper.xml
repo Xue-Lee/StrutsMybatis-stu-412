@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.dao.StuScoreDao">
+	<select id="findScoreByStu" resultType="score">
+	select * from stuscore ss LEFT JOIN course cs 
+	ON ss.courseid=cs.courseId 
+	WHERE stuid=#{stuId};
+	
+	</select>
+</mapper>

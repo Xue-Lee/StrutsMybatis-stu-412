@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="mypackage" namespace="/" extends="struts-default">
+        <action name="stuAction" class="com.icss.action.StuAction">
+            <result name="success">studentIndex.jsp</result>
+            <result name="loginSuccess">studentIndex.jsp</result>
+       		<result name="loginError">login.jsp</result>
+       		<result name="stuIndex">studentIndex.jsp</result>
+        </action>
+       
+    </package>
+    <package name="teacher" namespace="/" extends="struts-default">
+    	<default-action-ref name="sorry"></default-action-ref>
+    	<default-class-ref class="com.icss.action.TestAction"></default-class-ref>
+    	<global-results>
+    		<result name="sql">sql.jsp</result>
+    		<result name="io">io.jsp</result>
+    	</global-results>
+    	<global-exception-mappings>
+    		<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+    		<exception-mapping result="io" exception="java.io.IOException"></exception-mapping>
+    	</global-exception-mappings>
+    	<action name="*Action*" class="com.icss.action.TeacherAction" method="{1}">
+        	<result name="success">teacher/{2}.jsp</result>
+        </action>
+        <action name="sorry">
+        	<result name="sorry">sorry.jsp</result>
+        </action>
+        <action name="welcome" method="welcome">
+        	<result name="welcome">welcome.jsp</result>
+        </action>
+        <action name="exp" class="com.icss.action.TestAction" method="exp">
+        	<result name="success">welcome.jsp</result>
+        </action>
+    </package>
+   
+</struts>
